@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 type ServerConfig = {
     PORT: number
+    MONGO_DB_URL:string
 }
 
 function loadEnv() {
@@ -13,5 +14,6 @@ function loadEnv() {
 loadEnv();
 
 export const serverConfig: ServerConfig = {
-    PORT: Number(process.env.PORT) || 3001
+    PORT: Number(process.env.PORT) || 3001,
+    MONGO_DB_URL:process.env.MONGO_DB_URL || "mongodb://localhost:27017/urlshortner"
 };
