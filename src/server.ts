@@ -7,6 +7,8 @@ import logger from './config/logger.config';
 import { attachCorrelationIdMiddleware } from './middlewares/correlation.middleware';
 import { connectDB } from './config/db/db';
 import { initRedis } from './config/db/redis';
+import * as trpcExpress from '@trpc/server/adapters/express'
+import { urlRouter } from './routers/trpc/url.trpc';
 const app = express();
 
 app.use(express.json());
@@ -26,7 +28,9 @@ app.use('/api/v2', v2Router);
 
 app.use(appErrorHandler);
 app.use(genericErrorHandler);
-
+app.use('/trpc',trpcExpress.createExpressMiddleware({
+    router:urlRouter
+}))
 
 app.listen(serverConfig.PORT, async () => {
     logger.info(`Server is running on http://localhost:${serverConfig.PORT}`);
