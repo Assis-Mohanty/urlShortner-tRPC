@@ -1,5 +1,5 @@
 let base62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-function toBase62(id:number){
+export function toBase62(id:number){
     if(id==0){
         return "0";
     }

@@ -1,6 +1,7 @@
 import { serverConfig } from "../config";
 import { CacheRepository } from "../repository/cache.repository";
 import { UrlRepository } from "../repository/url.repository";
+import { toBase62 } from "../utils/base62";
 
 export class UrlService{
     constructor(

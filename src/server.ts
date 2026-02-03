@@ -8,7 +8,7 @@ import { attachCorrelationIdMiddleware } from './middlewares/correlation.middlew
 import { connectDB } from './config/db/db';
 import { initRedis } from './config/db/redis';
 import * as trpcExpress from '@trpc/server/adapters/express'
-import { urlRouter } from './routers/trpc/url.trpc';
+import { urlRouter } from './routers/v1/trpc.router';
 const app = express();
 
 app.use(express.json());

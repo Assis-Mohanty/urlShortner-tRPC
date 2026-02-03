@@ -11,10 +11,13 @@ export const UrlController = {
             orginalUrl:z.string().url('Invalid url')
         })
     ).mutation(async ({input})=>{
-        const urlService = new UrlService(new CacheRepository,new UrlRepository)
-        urlService.createShortUrl(input.orginalUrl) 
+        const urlService = new UrlService(new CacheRepository(),new UrlRepository())
+        const result =await urlService.createShortUrl(input.orginalUrl)
+        return {
+            result
+        }
     }),
-    getLongUrl:urlProcedure
+    get:urlProcedure
     .input(
         z.object({
             shortUrl:z.string().min(1,"short url is required")
@@ -22,6 +25,9 @@ export const UrlController = {
     )
     .query(async({input})=>{
         const urlservice = new UrlService(new CacheRepository,new UrlRepository)
-        urlservice.getLongUrl(input.shortUrl)
+        const result = await urlservice.getLongUrl(input.shortUrl)
+        return {
+            result
+        }
     })
 }
